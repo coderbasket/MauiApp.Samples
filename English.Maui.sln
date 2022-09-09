@@ -5,6 +5,13 @@ VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "English.Maui", "English.Maui.csproj", "{D72AC3DE-506C-4F09-A9E5-A821FE199EEB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MauiShell", "MauiShell", "{8C191624-1556-4111-8289-699680717902}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screens", "Screens", "{9098EE79-7DC1-4E04-B4C5-0E2B06E77FDF}"
+	ProjectSection(SolutionItems) = preProject
+		..\drawer.jpg = ..\drawer.jpg
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +27,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D72AC3DE-506C-4F09-A9E5-A821FE199EEB} = {8C191624-1556-4111-8289-699680717902}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {54BED6D3-ABF9-4764-B15C-312248831C1B}
