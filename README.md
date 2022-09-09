@@ -1,3 +1,3 @@
 # MauiApp.Samples
-https://github.com/coderbasket/MauiApp.Samples/blob/master/Screenshots/drawer.jpg
+https://github.com/coderbasket/MauiApp.Samples/raw/master/Screenshots/drawer.jpg
 
