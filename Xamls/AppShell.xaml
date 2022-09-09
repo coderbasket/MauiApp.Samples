@@ -55,7 +55,7 @@
                 x:Name="footer_txt"
                 FontSize="Small"
                 HorizontalOptions="Center"
-                Text="Hebrews 12:14"
+                Text="Drawer"
                 TextColor="{StaticResource PrimaryTextColor}" />
 
         </Grid>
