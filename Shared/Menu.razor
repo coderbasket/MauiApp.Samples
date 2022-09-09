@@ -1,0 +1,396 @@
+﻿
+<style>
+    /*drawer style*/
+
+    body {
+        zoom: @AppExtension.ZoomPixels;
+        overflow-x: hidden;
+        background-color: @AppExtension.PageBackgroundColor.ToArgbHex();
+    }
+
+
+    .elevation .16dp {
+        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 1px;
+        margin: 0;
+        min-height: 100%;
+        width: 100%;
+    }
+
+    .layout-drawer {
+        box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-296px);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        height: 100%;
+        width: 100%;
+    }
+
+        .layout-drawer.is-open {
+            transform: translateX(0);
+        }
+
+        .layout-drawer * {
+            flex-shrink: 0;
+        }
+
+        .layout-drawer .drawer-header {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            padding: 2px 0;
+            position: relative;
+        }
+
+            .layout-drawer .drawer-header.drawer-border {
+                border-bottom: 1px solid #CCCCCC;
+            }
+
+            .layout-drawer .drawer-header.drawer-header-cover {
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+
+            .layout-drawer .drawer-header .drawer-user {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+            }
+
+                .layout-drawer .drawer-header .drawer-user .drawer-avatar {
+                    box-sizing: border-box;
+                    background: #EEEEEE;
+                    border-radius: 50%;
+                    margin: 16px 0 8px 24px;
+                    height: 64px;
+                    width: 64px;
+                }
+
+                    .layout-drawer .drawer-header .drawer-user .drawer-avatar img {
+                        border-radius: inherit;
+                        height: 100%;
+                        width: 100%;
+                    }
+
+                .layout-drawer .drawer-header .drawer-user .drawer-meta {
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    position: relative;
+                    height: 56px;
+                }
+
+                    .layout-drawer .drawer-header .drawer-user .drawer-meta .drawer-name,
+                    .layout-drawer .drawer-header .drawer-user .drawer-meta .drawer-email {
+                        padding-left: 24px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+
+                    .layout-drawer .drawer-header .drawer-user .drawer-meta .drawer-name {
+                        font-family: 'Roboto', sans-serif;
+                        font-weight: 500;
+                    }
+
+        .layout-drawer .drawer-navigation {
+            display: flex;
+            flex-direction: column;
+            padding: 8px 0;
+        }
+
+            .layout-drawer .drawer-navigation.drawer-border {
+                border-bottom: 1px solid #CCCCCC;
+            }
+
+            .layout-drawer .drawer-navigation .drawer-navigation {
+                padding: 0;
+            }
+
+                .layout-drawer .drawer-navigation .drawer-navigation.drawer-border {
+                    border-bottom: none;
+                }
+
+                .layout-drawer .drawer-navigation .drawer-navigation .drawer-list-item {
+                    color: rgba(0, 0, 0, 0.74);
+                    padding-left: 48px;
+                    height: 36px;
+                }
+
+                    .layout-drawer .drawer-navigation .drawer-navigation .drawer-list-item:focus {
+                        color: rgba(0, 0, 0, 0.87);
+                    }
+
+            .layout-drawer .drawer-navigation .drawer-list-item,
+            .layout-drawer .drawer-navigation .drawer-dropdown-toggle,
+            .layout-drawer .drawer-navigation .drawer-subtitle {
+                box-sizing: border-box;
+                font-family: 'Roboto', sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                padding-left: 24px;
+            }
+
+            .layout-drawer .drawer-navigation .drawer-dropdown-toggle,
+            .layout-drawer .drawer-navigation .drawer-list-item {
+                color: rgba(0, 0, 0, 0.87);
+                display: flex;
+                align-items: center;
+                position: relative;
+                transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                height: 48px;
+            }
+
+                .layout-drawer .drawer-navigation .drawer-dropdown-toggle:focus,
+                .layout-drawer .drawer-navigation .drawer-list-item:focus {
+                    background-color: #E0E0E0;
+                }
+
+                    .layout-drawer .drawer-navigation .drawer-dropdown-toggle:focus .drawer-badge,
+                    .layout-drawer .drawer-navigation .drawer-list-item:focus .drawer-badge {
+                        background-color: rgba(0, 0, 0, 0.87);
+                    }
+
+                    .layout-drawer .drawer-navigation .drawer-dropdown-toggle:focus .material-icons,
+                    .layout-drawer .drawer-navigation .drawer-list-item:focus .material-icons {
+                        color: rgba(0, 0, 0, 0.87);
+                    }
+
+                .layout-drawer .drawer-navigation .drawer-dropdown-toggle.is-active,
+                .layout-drawer .drawer-navigation .drawer-list-item.is-active {
+                    color: @AppExtension.PrimaryTextColor.ToHex();
+                }
+
+                    .layout-drawer .drawer-navigation .drawer-dropdown-toggle.is-active .drawer-badge,
+                    .layout-drawer .drawer-navigation .drawer-list-item.is-active .drawer-badge {
+                        background-color: #3B1A50;
+                    }
+
+                    .layout-drawer .drawer-navigation .drawer-dropdown-toggle.is-active .material-icons,
+                    .layout-drawer .drawer-navigation .drawer-list-item.is-active .material-icons {
+                        color: inherit;
+                    }
+
+                .layout-drawer .drawer-navigation .drawer-dropdown-toggle span,
+                .layout-drawer .drawer-navigation .drawer-list-item span {
+                    flex-grow: 1;
+                    flex-shrink: 1;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+
+                .layout-drawer .drawer-navigation .drawer-dropdown-toggle .material-icons,
+                .layout-drawer .drawer-navigation .drawer-list-item .material-icons {
+                    color: rgba(0, 0, 0, 0.54);
+                    margin-right: 24px !important;
+                    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                }
+
+                .layout-drawer .drawer-navigation .drawer-dropdown-toggle .drawer-badge,
+                .layout-drawer .drawer-navigation .drawer-list-item .drawer-badge {
+                    background-color: rgba(0, 0, 0, 0.54);
+                    border-radius: 2px;
+                    box-sizing: border-box;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 500;
+                    margin-right: 24px;
+                    padding: 0 4px;
+                    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    height: 24px;
+                    min-width: 24px;
+                }
+
+            .layout-drawer .drawer-navigation .drawer-dropdown-toggle {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                margin: 0;
+                outline: 0;
+                padding: 0 0 0 24px;
+                text-align: left;
+            }
+
+            .layout-drawer .drawer-navigation .drawer-list-item {
+                text-decoration: none;
+            }
+
+            .layout-drawer .drawer-navigation .drawer-subtitle {
+                color: rgba(0, 0, 0, 0.54);
+                overflow: hidden;
+                padding-top: 8px;
+                text-overflow: ellipsis;
+                height: 40px;
+                white-space: nowrap;
+            }
+
+        .layout-drawer .drawer-header {
+            background-color: @AppExtension.NavigationBarColor.ToHex();
+            color: #FFFFFF;
+            height: 50px;
+            float: left;
+            border-bottom: 1px solid red;
+        }
+
+    .layout-drawer {
+        box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px rgba(0, 0, 0, 0.8), -12px 0 15px -4px rgba(31, 73, 125, 0.8);
+    }
+
+        .layout-drawer .drawer-header .bttn {
+            margin-top: 4px;
+            vertical-align: middle;
+        }
+
+    .headerOpacity {
+        opacity: 0.4;
+    }
+
+    .dropOpacity {
+        opacity: 0.4;
+    }
+
+    .layout-drawer.drawer-header {
+        align-content: flex-start;
+        color: @AppExtension.PrimaryTextColor.ToArgbHex();
+        white-space: nowrap;
+        display: flex;
+        position: relative;
+        align-items: center;
+    }
+
+        .layout-drawer .drawer-header .header-span-title {
+            text-align: center;
+            display: inline-block;
+            color: @AppExtension.PrimaryTextColor.ToArgbHex();
+            vertical-align: middle;
+            position: absolute;
+            margin-left: 60px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 12px;
+            user-select: none;
+        }
+
+    /*layout scroll*/
+    ::-webkit-scrollbar {
+        width: 4px; /* width of the entire scrollbar */
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: @AppExtension.PageBackgroundColor.ToHex(); /* color of the tracking area */
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: @AppExtension.SystemAccentColor.ToHex(); /* color of the scroll thumb */
+        border-radius: 20px; /* roundness of the scroll thumb */
+        border: 0px solid orange; /* creates padding around scroll thumb */
+    }
+</style>
+<div>
+    <!-- Navigation Drawer -->
+    <div style="background-color:@AppExtension.NavigationBarColor.ToHex();" class="layout-drawer @openClass">
+        <nav class="drawer-navigation drawer-border">
+            @*<a @onclick="@(()=>ItemClicked(NavStrings.HOME))" class="drawer-list-item drawer-list-item is-active span-text-color" href="javascript:">
+            <i style="color:@ColorList.GetRandomColorHex(NavStrings.HOME)" class="material-icons">home</i><span>Home</span>
+            </a>*@
+            <a @onclick="@(()=>ItemClicked(NavStrings.NOTE_BOOK))" class="drawer-list-item drawer-list-item is-active span-text-color" href="javascript:">
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.NOTE_BOOK)" class="material-icons">book</i><span>Notebook</span>
+            </a>
+            <a @onclick="@(()=>ItemClicked(NavStrings.BOOK_MARKS))" class="drawer-list-item drawer-list-item is-active span-text-color" href="javascript:">
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.BOOK_MARKS)" class="material-icons">collections_bookmark</i><span>Bookmarks</span>
+            </a>
+            <a @onclick="@(()=>ItemClicked(NavStrings.HIGH_LIGHTS))" class="drawer-list-item drawer-list-item is-active span-text-color" href="javascript:">
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.HIGH_LIGHTS)" class="material-icons">format_color_fill</i><span>Highlights</span>
+            </a>
+        </nav>
+        <nav class="drawer-navigation drawer-border">
+
+            <a @onclick="@(()=>ItemClicked(NavStrings.WORSHIPS))" class="drawer-list-item drawer-list-item is-active span-text-color" href="javascript:">
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.WORSHIPS)" class="material-icons">audiotrack</i><span>Worship Songs</span>
+            </a>
+            @if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+            {
+                
+            }
+
+        </nav>
+        <nav class="drawer-navigation drawer-border">
+
+            <a @onclick="@(()=>ItemClicked(NavStrings.EXTRAS_BACKUP))" class="drawer-list-item" href="javascript:">
+                <span style="color:@AppExtension.PrimaryTextColor.ToArgbHex();" class="span-text-color">Extras & Backup</span>
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.EXTRAS_BACKUP)" class="material-icons">archive</i>
+            </a>
+
+            <a @onclick="@(()=>ItemClicked(NavStrings.TRANSLATIONS))" class="drawer-list-item" href="javascript:">
+                <span style="color:@AppExtension.PrimaryTextColor.ToArgbHex();" class="span-text-color">Translations</span>
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.TRANSLATIONS)" class="material-icons">translate</i>
+            </a>
+            <a @onclick="@(()=>ItemClicked(NavStrings.LOVE))" class="drawer-list-item" href="javascript:">
+                <span style="color:darkgoldenrod" class="span-text-color">Remove Ads &amp; Support</span>
+                <i style="color:red" class="material-icons">favorite</i>
+            </a>
+        </nav>
+
+        <nav class="drawer-navigation">
+            <a @onclick="@(()=>ItemClicked(NavStrings.SETTINGS))" class="drawer-list-item drawer-icon-right" href="javascript:">
+                <span style="color:@AppExtension.PrimaryTextColor.ToArgbHex();" class="span-text-color">Settings</span>
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.SETTINGS)" class="material-icons">settings</i>
+            </a>
+            <a @onclick="@(()=>ItemClicked(NavStrings.NEED_HELP))" class="drawer-list-item drawer-icon-right" href="javascript:">
+                <span style="color:@AppExtension.PrimaryTextColor.ToArgbHex();" class="span-text-color">Need Help</span>
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.NEED_HELP)" class="material-icons">sms</i>
+            </a>
+            <a @onclick="@(()=>ItemClicked(NavStrings.SUPPORT))" class="drawer-list-item drawer-icon-right" href="javascript:">
+                <span style="color:@AppExtension.PrimaryTextColor.ToArgbHex();" class="span-text-color">About</span>
+                <i style="color:@ColorList.GetRandomColorHex(NavStrings.SUPPORT)" class="material-icons">info_outline</i>
+            </a>
+
+        </nav>
+    </div>
+</div>
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        scrollBody = "hidden";
+        dropOpacity = "dropOpacity";
+        headerOpacity = "header-topped headerOpacity";
+        StateHasChanged();
+    }
+    public string dropOpacity = null;
+    public string headerOpacity = "header-topped";
+    public string scrollBody = "scroll";
+    string openClass = "is-open";
+    public void ItemClicked(string e)
+    {        
+        this.Close();
+    }
+    public void Close()
+    {
+        
+    }
+}
