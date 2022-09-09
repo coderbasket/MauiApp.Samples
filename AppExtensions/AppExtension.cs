@@ -17,7 +17,6 @@ namespace MauiAppExtensions
         public static bool IsMobileWidth = false;
 
         public static Color SystemAccentColor = Application.AccentColor == null ? Color.FromArgb("#cc9966") : Application.AccentColor;
-       
         public static string AccentRGBA = "";
         public static Color PageBackgroundColor = null;
         public static Color NavigationBarColor = Colors.Teal;
